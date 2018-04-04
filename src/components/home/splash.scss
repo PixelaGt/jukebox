@@ -1,0 +1,101 @@
+@import '../../styles/index.scss';
+
+.splash {
+  min-height: 100vh;
+  padding-bottom: 0;
+  position: relative;
+  z-index: 2;
+  background: radial-gradient(ellipse at 50% 100%, #8147ff, #5c1de8);
+
+  p,
+  .tel {
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 16px;
+    font-family: 'rns_sanz', sans-serif;
+  }
+
+  .tel {
+    text-decoration: underline;
+  }
+
+  span {
+    color: #fff;
+    margin-bottom: 36px;
+    font-size: 22px;
+    font-family: 'rns_sanz', sans-serif;
+  }
+}
+
+.splash-head {
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    font-family: 'rns_sans', sans-serif;
+    color: #fff;
+  }
+}
+
+.social-nav {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  z-index: 4;
+
+  li {
+    a {
+      margin-left: 8px;
+    }
+  }
+}
+
+.icon {
+  height: 16px;
+  width: 16px;
+
+  use {
+    fill: #fff;
+  }
+}
+
+.pixela-logo {
+  height: auto;
+  width: 66%;
+  min-width: 200px;
+  margin-bottom: 36px;
+
+  use {
+    fill: #fff;
+  }
+}
+
+.content {
+  @include col(6);
+
+  text-align: center;
+  height: calc(100vh - 100px);
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  p {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    a {
+      margin-left: 8px;
+    }
+  }
+}
+
+.button {
+  @include white-button($purple, 32px, 150px);
+
+  font-size: 10px;
+  text-transform: capitalize;
+  margin-bottom: 24px;
+}

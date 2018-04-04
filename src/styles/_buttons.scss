@@ -1,0 +1,49 @@
+
+@mixin button($color: $purple, $height: $button-height, $width: $button-width) {
+  align-items: center;
+  border-radius: 26px;
+  border: 1px solid;
+  box-shadow: rgba(#000, 0.16) 0 3px 8px;
+  color: $color;
+  cursor: pointer;
+  display: flex;
+  font-family: 'rns_sanz', sans-serif;
+  font-style: normal;
+  height: $height;
+  justify-content: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: box-shadow 0.4s ease;
+  width: $width;
+
+  &:hover {
+    box-shadow: rgba(#000, 0.57) 2px 4px 12px;
+  }
+
+  &.disabled,
+  &:disabled {
+    cursor: default;
+    opacity: 0.75;
+    pointer-events: none;
+
+    &:hover {
+      box-shadow: rgba(#000, 0.16) 0 3px 8px;
+    }
+  }
+}
+
+@mixin white-button($color: $purple, $height: $button-height, $width: $button-width) {
+  @include button($color, $height, $width);
+
+  background: linear-gradient(to right, $white, $white);
+  background-color: $white;
+  border: 0;
+}
+
+@mixin gradient-button ($color: $purple, $gradient: $navy-purple, $height: $button-height, $width: $button-width) {
+  @include button($color, $height, $width);
+
+  background: linear-gradient(to right, $color, $gradient);
+  border: 0;
+  color: white;
+}
