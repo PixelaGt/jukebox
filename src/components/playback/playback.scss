@@ -13,24 +13,24 @@
 }
 
 .playback-img {
-  position: absolute;
-  background-size: cover;
-  background-repeat: no-repeat;
   background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 100%;
-  width: 100%;
-  top: 0;
   left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
   z-index: -1;
 }
 
 .playback-overlay {
   background: radial-gradient(ellipse at 50% 100%, rgba(#8147ff, 0.8), rgba(#5c1de8, 0.8));
-  position: absolute;
   height: 100%;
-  width: 100%;
-  top: 0;
   left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
   z-index: -1;
 }
 
@@ -40,101 +40,102 @@
 }
 
 .player {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 64vh;
+  display: flex;
+  height: 60vh;
+  justify-content: space-between;
+  margin-top: 4%;
+  width: 100%;
 }
 
 .song-img {
-  margin: 0;
-  position: relative;
   border-radius: 20px;
   height: 260px;
-  width: 260px;
+  margin-right: 52px;
+  margin: 0;
   min-width: 260px;
   overflow: hidden;
-  margin-right: 52px;
+  position: relative;
+  width: 260px;
 
   img {
+    height: 100%;
+    left: 50%;
     position: absolute;
     top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
-    height: 100%;
   }
 }
 
 .song {
-  display: flex;
   align-items: center;
+  display: flex;
 
   h1 {
+    color: #fff;
     font-size: 72px;
     line-height: 86px;
-    color: #fff;
     margin: 0;
   }
 
   p {
+    color: rgba(#fff, 0.8);
     font-size: 32px;
     line-height: 38px;
-    color: rgba(#fff, 0.8);
     margin: 0;
   }
 }
 
 .jukebox-container {
-  width: 90%;
   margin: 0 auto;
+  width: 90%;
 }
 
 .next-song {
-  height: 180px;
-  min-width: 180px;
-  width: 180px;
+  align-items: center;
   border-radius: 20px;
   border: #fff 5px solid;
   box-shadow: rgba(#000, 0.27) 0 5px 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  height: 180px;
+  justify-content: center;
+  min-width: 180px;
+  width: 180px;
 
   h4 {
     color: #fff;
-    margin-top: 16px;
     margin-bottom: 16px;
+    margin-top: 16px;
   }
 }
 
 .next-song-img {
-  margin: 0;
   height: 96px;
+  margin: 0;
   min-width: 96px;
-  width: 96px;
-  position: relative;
   overflow: hidden;
+  position: relative;
+  width: 96px;
 
   img {
+    height: 100%;
+    left: 50%;
     position: absolute;
     top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
-    height: 100%;
   }
 }
 
 .player-msg {
-  height: 152px;
-  width: 729px;
-  margin: 0 auto;
   background: linear-gradient(80deg, #8147FF, #ED5DCB);
-  box-shadow: rgba(#000, 0.27) 0 5px 20px;
   border-radius: 8px;
+  box-shadow: rgba(#000, 0.27) 0 5px 20px;
   box-sizing: border-box;
+  height: 152px;
+  margin: 0 auto;
   padding: 24px 68px;
+  width: 729px;
 
   p {
     color: #fff;
@@ -145,74 +146,74 @@
 }
 
 .profile {
-  display: flex;
   align-items: center;
+  display: flex;
 }
 
 .profile-img {
-  height: 32px;
-  width: 32px;
-  min-width: 32px;
-  position: relative;
   border-radius: 50%;
-  overflow: hidden;
-  margin: 0;
+  height: 32px;
   margin-right: 8px;
+  margin: 0;
+  min-width: 32px;
+  overflow: hidden;
+  position: relative;
+  width: 32px;
 
   img {
+    height: 100%;
+    left: 50%;
     position: absolute;
     top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
-    height: 100%;
   }
 }
 
 .profile-detail {
   h5 {
-    font-size: 10px;
     color: #fff;
+    font-size: 10px;
     line-height: 12px;
     margin: 0;
   }
 
   p {
+    color: #fff;
     font-size: 8px;
     line-height: 10px;
-    color: #fff;
     margin: 0;
   }
 }
 
 .bar-container {
-  width: 100%;
-  display: flex;
   align-items: center;
+  display: flex;
+  width: 100%;
 }
 
 .bar {
+  background-color: rgba(#fff, 0.16);
+  border-radius: 20px;
+  height: 8px;
   margin-left: 20px;
   margin-right: 20px;
   width: 85%;
-  height: 8px;
-  border-radius: 20px;
-  background-color: rgba(#fff, 0.16);
 }
 
 .progress {
-  height: 8px;
-  border-radius: 20px;
   background-color: rgba(#fff, 0.8);
+  border-radius: 20px;
+  height: 8px;
   width: 50%;
 }
 
 .play-icon {
-  height: 56px;
-  width: 56px;
-  min-width: 56px;
   border-radius: 50%;
   border: #fff 4px solid;
+  height: 56px;
   margin-right: 64px;
+  min-width: 56px;
+  width: 56px;
 }
 
 .song-bar {
