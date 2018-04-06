@@ -70,7 +70,8 @@ export default {
         this.id = device_id;
         this.player.getCurrentState().then(state => {
           if (!state) {
-            this.playNextSong()
+            this.popNextSong()
+            this.playSong()
           }
         })
       });
@@ -97,8 +98,6 @@ export default {
 
     updatePlayback({ track_window, duration, position }) {
       const trackInfo = track_window.current_track
-      let { next_tracks: [nextSong] } = track_window;
-
       this.duration = duration
       this.position = position
       if (!this.currentSong || (this.currentSong.id !== trackInfo.id)) {
@@ -108,15 +107,6 @@ export default {
           this.updateProgress();
           this.setArtist(this.currentSong.artists[0]);
         })
-      }
-
-      if (!nextSong && !this.nextSong) {
-        this.popNextSong()
-      }
-      else if (this.nextSong.id !== nextSong.id) {
-        this.nextSong = nextSong;
-      } else {
-        this.nextSong = null;
       }
     },
 
@@ -136,27 +126,23 @@ export default {
         })
     },
 
-    playNextSong() {
-      let nextSong;
-      if (!this.nextSong) this.popNextSong();
-      nextSong = this.nextSong;
+    playSong() {
+      let currentSong = this.currentSong;
       spotifyApi.put(`https://api.spotify.com/v1/me/player/play?device_id=${this.id}`, {
-        uris: [ this.nextSong.uri ]
+        uris: [ this.currentSong.uri ]
       })
-      if ( nextSong.source ) {
+      if ( currentSong.source ) {
         this.$root.db.collection('jukebox').doc(nextSong.key)
           .update({status: 'playing'})
-          .then(res => {
-            this.popNextSong()
-          })
-          .catch(err => {
-            console.log("Error adding document: ", err);
-          })
       }
     },
 
     popNextSong() {
       const nextSong = this.songs.shift()
+      if (!this.nextSong) {
+        this.currentSong = nextSong;
+        this.playSong();
+      }
       if (!nextSong) return this.nextSong = null;
       this.nextSong = {
         ...nextSong,
@@ -177,7 +163,8 @@ export default {
         this.position += 1000
 
         if (this.position >= this.duration && this.nextSong) {
-          this.playNextSong()
+          this.popNextSong()
+          this.playSong()
         }
       }, 1000)
     }
