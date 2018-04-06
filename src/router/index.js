@@ -21,7 +21,7 @@ export default new Router({
     },
     {
       path: '/playback',
-      name: 'Playback',
+      name: 'playback',
       component: Playback
     }
   ]

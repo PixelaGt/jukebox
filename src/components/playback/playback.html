@@ -1,6 +1,6 @@
 
 <section class="jukebox">
-  <div class="playback-img" style="background-image: url('http://cdn01.ib.infobae.com/adjuntos/162/imagenes/014/014/0014014674.jpg')">
+  <div class="playback-img" :style="{ backgroundImage: `url('${artistImage.url}')` }">
   </div>
   <div class="playback-overlay">
   </div>
@@ -36,20 +36,20 @@
     </div>
 
     <div class="player">
-      <div class="song">
+      <div class="song" v-if="currentSong">
         <figure class="song-img">
-          <img src="http://cdn01.ib.infobae.com/adjuntos/162/imagenes/014/014/0014014674.jpg" alt="">
+          <img :src="currentSong.album.images[0].url" :alt="currentSong.name">
         </figure>
         <div class="song-detail">
-          <h1>Where is my mind?</h1>
-          <p>Pixies - 1988</p>
+          <h1>{{currentSong.name}}</h1>
+          <p>{{artists}} - {{currentSong.album.release_date}}</p>
         </div>
       </div>
-      <div class="next-song">
+      <div class="next-song" v-if="nextSong">
         <figure class="next-song-img">
-          <img src="http://cdn01.ib.infobae.com/adjuntos/162/imagenes/014/014/0014014674.jpg" alt="">
+          <img src="nextSong.album.images[0].url" :alt="nextSong.name">
         </figure>
-        <h4>Tick Tick Boom</h4>
+        <h4>{{nextSong.name}}</h4>
       </div>
     </div>
     <div class="player-msg">
@@ -66,21 +66,20 @@
     </div>
 
     <div class="song-bar">
-      <div class="play-icon">
-
+      <div class="play-icon" @click="toggle()">
+        <svg class="icon">
+          <use xlink:href="#play" v-if="playing"></use>
+          <use xlink:href="#pause" v-if="!playing"></use>
+        </svg>
       </div>
       <div class="bar-container">
-        <p>1:12</p>
+        <p>{{position | time}}</p>
         <div class="bar">
-          <div class="progress">
+          <div class="progress" :style="{width: `${ellapsedTime}%`}">
           </div>
         </div>
-        <p>3:56</p>
+        <p>{{duration | time}}</p>
       </div>
     </div>
-
   </div>
-  <!-- <no-ssr>
-    <Particles/>
-  </no-ssr> -->
 </section>
