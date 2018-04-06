@@ -110,7 +110,7 @@ export default {
         })
       }
 
-      if (!nextSong) {
+      if (!nextSong && !this.nextSong) {
         this.popNextSong()
       }
       else if (this.nextSong.id !== nextSong.id) {
@@ -133,12 +133,13 @@ export default {
             const key = doc.id
             this.songs.push({key, ...doc.data()})
           });
-          if(!this.nextSong) this.popNextSong()
         })
     },
 
     playNextSong() {
-      const nextSong = this.nextSong;
+      let nextSong;
+      if (!this.nextSong) this.popNextSong();
+      nextSong = this.nextSong;
       spotifyApi.put(`https://api.spotify.com/v1/me/player/play?device_id=${this.id}`, {
         uris: [ this.nextSong.uri ]
       })
@@ -156,7 +157,7 @@ export default {
 
     popNextSong() {
       const nextSong = this.songs.shift()
-      if (!nextsong) return this.nextSong = null;
+      if (!nextSong) return this.nextSong = null;
       this.nextSong = {
         ...nextSong,
         album: {
@@ -174,7 +175,11 @@ export default {
 
       timer = setInterval(() => {
         this.position += 1000
-      })
+
+        if (this.position >= this.duration && this.nextSong) {
+          this.playNextSong()
+        }
+      }, 1000)
     }
   },
 
