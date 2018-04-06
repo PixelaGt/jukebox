@@ -71,7 +71,7 @@ export default {
         this.player.getCurrentState().then(state => {
           if (!state) {
             this.popNextSong()
-            this.playSong()
+            this.playNextSong()
           }
         })
       });
@@ -96,8 +96,14 @@ export default {
       })
     },
 
-    updatePlayback({ track_window, duration, position }) {
+    updatePlayback({ track_window, duration, position , paused}) {
       const trackInfo = track_window.current_track
+
+      if (position === 0 && duration === 0 && paused) {
+        this.popNextSong()
+        this.playNextSong()
+      }
+
       this.duration = duration
       this.position = position
       if (!this.currentSong || (this.currentSong.id !== trackInfo.id)) {
@@ -126,12 +132,15 @@ export default {
         })
     },
 
-    playSong() {
-      let currentSong = this.currentSong;
+    playNextSong() {
+      let nextSong;
+      nextSong = this.nextSong;
       spotifyApi.put(`https://api.spotify.com/v1/me/player/play?device_id=${this.id}`, {
-        uris: [ this.currentSong.uri ]
+        uris: [ this.nextSong.uri ]
       })
-      if ( currentSong.source ) {
+
+      console.log('step');
+      if ( nextSong.source ) {
         this.$root.db.collection('jukebox').doc(nextSong.key)
           .update({status: 'playing'})
       }
@@ -139,10 +148,6 @@ export default {
 
     popNextSong() {
       const nextSong = this.songs.shift()
-      if (!this.nextSong) {
-        this.currentSong = nextSong;
-        this.playSong();
-      }
       if (!nextSong) return this.nextSong = null;
       this.nextSong = {
         ...nextSong,
@@ -162,10 +167,7 @@ export default {
       timer = setInterval(() => {
         this.position += 1000
 
-        if (this.position >= this.duration && this.nextSong) {
-          this.popNextSong()
-          this.playSong()
-        }
+
       }, 1000)
     }
   },
