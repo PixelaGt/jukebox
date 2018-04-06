@@ -1,0 +1,12 @@
+<div class="player-msg" v-if="currentMessage">
+  <p>{{currentMessage.message}}</p>
+  <div class="profile">
+    <figure class="profile-img">
+      <img :src="avatar" :alt="currentMessage.name">
+    </figure>
+    <div class="profile-detail">
+      <h5>{{currentMessage.name}}</h5>
+      <p>{{currentMessage.time | date}}</p>
+    </div>
+  </div>
+</div>

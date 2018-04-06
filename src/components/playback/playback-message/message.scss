@@ -1,0 +1,61 @@
+@import '../../home/splash.scss';
+
+.player-msg {
+  background: linear-gradient(80deg, #8147FF, #ED5DCB);
+  border-radius: 8px;
+  box-shadow: rgba(#000, 0.27) 0 5px 20px;
+  box-sizing: border-box;
+  height: 152px;
+  padding: 24px 68px;
+  position: absolute;
+  bottom: 96px;
+  left: calc(50%  - (729px / 2));
+  width: 729px;
+
+  p {
+    color: #fff;
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: 0;
+  }
+}
+
+.profile {
+  align-items: center;
+  display: flex;
+}
+
+.profile-img {
+  border-radius: 50%;
+  height: 32px;
+  margin: 0;
+  margin-right: 8px;
+  min-width: 32px;
+  overflow: hidden;
+  position: relative;
+  width: 32px;
+
+  img {
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.profile-detail {
+  h5 {
+    color: #fff;
+    font-size: 10px;
+    line-height: 12px;
+    margin: 0;
+  }
+
+  p {
+    color: #fff;
+    font-size: 8px;
+    line-height: 10px;
+    margin: 0;
+  }
+}

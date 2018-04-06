@@ -15,28 +15,32 @@ export default {
   methods: {
     login() {
       const scopes = [
-      'streaming',
-      'user-read-birthdate',
-      'user-read-email',
-      'user-read-private',
-      'user-read-currently-playing',
-      'user-modify-playback-state',
-      'user-read-playback-state',
-      'playlist-modify-public',
-      'playlist-read-collaborative'
-    ];
+        'streaming',
+        'user-read-birthdate',
+        'user-read-email',
+        'user-read-private',
+        'user-read-currently-playing',
+        'user-modify-playback-state',
+        'user-read-playback-state',
+        'playlist-modify-public',
+        'playlist-read-collaborative'
+      ];
 
-    const params = `client_id=86e3e3b0d7b84b78bc214e7ea334c813&response_type=token&redirect_uri=http://localhost:8080/callback&scope=${encodeURIComponent(scopes)}`;
-    const options = 'menubar=no,location=no,resizable=no,scrollbars=no,status=no,left=100,top=10,width=400,height=500';
-    window.open('https://accounts.spotify.com/authorize?'+params, 'Spotify',options);
+      const params = `client_id=86e3e3b0d7b84b78bc214e7ea334c813&response_type=token&redirect_uri=http://localhost:8080/callback&scope=${encodeURIComponent(scopes)}`;
+      const options = 'menubar=no,location=no,resizable=no,scrollbars=no,status=no,left=100,top=10,width=400,height=500';
+      window.open('https://accounts.spotify.com/authorize?'+params, 'Spotify',options);
 
-    window.addEventListener('message', (event) => {
-     let hash = JSON.parse(event.data);
-     this.$cookie.set('spotify_credentials', event.data);
-     this.$root.spotifyCredentials = hash;
-     this.$router.push('playback');
-    }, false)
+      window.addEventListener('message', this.setCredentials, false)
 
+    },
+
+    setCredentials(event) {
+      if (event.data) {
+        let hash = JSON.parse(event.data)
+        this.$root.spotifyCredentials = hash
+        this.$router.push('playback')
+        window.removeEventListener('message', this.setCredentials)
+      }
     }
   }
 }

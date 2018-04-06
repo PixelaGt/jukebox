@@ -4,16 +4,25 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueCookie from 'vue-cookie'
+import VueFire from 'vuefire'
+import firebase from 'firebase'
+import config from './config.json'
+import 'firebase/firestore'
+
+firebase.initializeApp(config.firebase)
+const db = firebase.firestore()
 
 Vue.config.productionTip = false
 
 Vue.use(VueCookie)
+Vue.use(VueFire)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   data: {
     spotifyCredentials: null,
-    spotifySDKReady: false
+    spotifySDKReady: false,
+    db
   },
   router,
   components: { App },

@@ -9,18 +9,20 @@
       <img class="jukebox-logo" src="@/assets/img/pixela.svg">
 
       <ul class="social-nav">
-      <li>
-        <a href="https://www.behance.net/pixelateam">
-          <svg class="icon">
-            <use xlink:href="#behance"></use>
-          </svg>
-        </a>
-      </li>
-
-        <li><a href="https://www.facebook.com/PixelaGT/"><svg class="icon">
-          <use xlink:href="#facebook"></use>
-        </svg></a></li>
-
+        <li>
+          <a href="https://www.behance.net/pixelateam">
+            <svg class="icon">
+              <use xlink:href="#behance"></use>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.facebook.com/PixelaGT/">
+            <svg class="icon">
+              <use xlink:href="#facebook"></use>
+            </svg>
+          </a>
+        </li>
         <li><a href="https://github.com/PixelaGt"><svg class="icon">
           <use xlink:href="#github"></use>
         </svg></a></li>
@@ -47,29 +49,17 @@
       </div>
       <div class="next-song" v-if="nextSong">
         <figure class="next-song-img">
-          <img src="nextSong.album.images[0].url" :alt="nextSong.name">
+          <img :src="nextSong.album.images[0].url" :alt="nextSong.name">
         </figure>
         <h4>{{nextSong.name}}</h4>
       </div>
     </div>
-    <div class="player-msg">
-      <p>Aqui va mi comentario no tan extremadamente largo que no deberia pasarse de 150 caracteres.</p>
-      <div class="profile">
-        <figure class="profile-img">
-          <img src="http://cdn01.ib.infobae.com/adjuntos/162/imagenes/014/014/0014014674.jpg" alt="">
-        </figure>
-        <div class="profile-detail">
-          <h5>Estuardo Díaz</h5>
-          <p>Hace 1 hora</p>
-        </div>
-      </div>
-    </div>
-
+    <Messages/>
     <div class="song-bar">
       <div class="play-icon" @click="toggle()">
         <svg class="icon">
-          <use xlink:href="#play" v-if="playing"></use>
-          <use xlink:href="#pause" v-if="!playing"></use>
+          <use xlink:href="#play" v-if="!playing"></use>
+          <use xlink:href="#pause" v-if="playing"></use>
         </svg>
       </div>
       <div class="bar-container">
